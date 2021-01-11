@@ -1,5 +1,7 @@
 class Contact {
 
+    id;
+    
     get name() {
         return this._name;
     }
@@ -36,6 +38,14 @@ class Contact {
         let nameRegex = RegExp('^[0-9]{10,13}$');
         if (nameRegex.test(phone)) this._phone = phone;
         else throw "Phone  is Invalid"    
+    }
+
+    get city(){
+        return this._city;
+    }
+
+    get state(){
+        return this._state;
     }
 
 }
