@@ -1,7 +1,7 @@
 class Contact {
 
     id;
-    
+
     get name() {
         return this._name;
     }
@@ -43,9 +43,15 @@ class Contact {
     get city(){
         return this._city;
     }
+    set city(city){
+        this._city=city;
+    }
 
     get state(){
         return this._state;
+    }
+    set state(){
+        this._state=state;
     }
 
 }
@@ -92,6 +98,8 @@ address.addEventListener('input',function(){
             document.querySelector('.address-error').textContent=e;
         } 
 });
+
+
 
 
 
