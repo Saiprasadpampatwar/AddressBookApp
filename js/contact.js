@@ -142,6 +142,15 @@ const storeToLocalStorage = (person) => {
     localStorage.setItem("ContactList", JSON.stringify(contactList));
 }
 
+const onreset = () => {
+    document.querySelector('#name').value="";
+    document.querySelector('#address').value="";
+    document.querySelector('#city').selectedIndex=0;
+    document.querySelector('#state').selectedIndex=0;
+    document.querySelector('#zip').value="";
+    document.querySelector('#phone').value="";
+}
+
 
 
 
