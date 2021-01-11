@@ -105,11 +105,15 @@ address.addEventListener('input',function(){
 });
 
 const save = () => {
-    createContact();
+    let contact = createContact();
+    storeToLocalStorage(contact);
+    
 }
 
 const createContact = () => {
-    const person = new Contact();
+
+    let person = new Contact();
+    if(!person.id) person.id = createNewID();
     person.name = document.querySelector('#name').value;
     person.address = document.querySelector('#address').value;
     person.city = document.querySelector('#city').value;
@@ -117,6 +121,25 @@ const createContact = () => {
     person.zip = document.querySelector('#zip').value;
     person.phone = document.querySelector('#phone').value;
     alert(person.toString());
+    return person;
+}
+
+const createNewID = () => {
+    let personID = localStorage.getItem('PersonID');
+    personID = !personID ? 1: (parseInt(personID)+1).toString();
+    localStorage.setItem('PersonID',personID);
+    return personID;
+}
+
+const storeToLocalStorage = (person) => {
+    let contactList = JSON.parse(localStorage.getItem("ContactList"));
+    if(contactList){
+        contactList.push(person);
+    } else{
+        contactList = [person];
+    }
+    alert(contactList.toString());
+    localStorage.setItem("ContactList", JSON.stringify(contactList));
 }
 
 
