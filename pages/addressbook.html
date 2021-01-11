@@ -20,13 +20,53 @@
         </div>
     </div><!--logo-content-->
   </header><!--Header Content-->
+  
   <div class="main-container">
     <div class="form-container">
       <div class="form-header">
         PERSON ADDRESS FORM
+        <img src="../assets/cancel.jpg" width="3%" style="float: right;">
       </div><!--form-header-->
+      <form class="form" action="#" onreset="resetForm()" onsubmit="save()" ><!--main form start-->
+        <div class="row-content">
+             <label class="label txt" for="name">Full Name</label>
+             <input class="input" type="text" id="name" name="name" required>
+            <error-output class="text-error" for="text"></error-output>
+        </div><!--Full name container-->
+        <div class="row-content">
+          <label class="label txt" for="phone">Phone Number</label>
+          <input class="input" type="number" id="phone"
+           name="phone" placeholder="" required>
+        </div><!--Phone container-->
+        <div class="row-content">
+          <label class="label txt" for="address">Address</label>
+          <textarea id="address" class="input" name="address" placeholder="" style="height:100px"></textarea>
+        </div><!--Addrress container-->
+        <div class="city-state-zip-content">
+          <div class="row-content city">
+            <label class="label txt" for="city">City</label>
+            <select id="City" name="City"  style="width: 80%"></select>
+          </div><!--City-->
+          <div class="row-content state">
+            <label class="label txt" for="state">State</label>
+            <select id="State" name="State" style="width: 80%"></select>
+          </div><!--State-->
+          <div class="row-content zip">
+            <label class="label txt" for="state">Zip</label>
+            <input class="input" type="number" id="zip" name="zip" placeholder="" required style="width: 100%">
+          </div><!--Zip-->
+        </div><!--City,state,Zip Container-->
+        <div class="button-content">
+          <div class="empty-content"></div>
+          <div class="add-reset">
+              <button onclick=myFunction() type="add" class="button addButton" id="addButton">Add</button>
+              <button type="reset" class="button resetButton">Reset</button>
+          </div>
+       </div><!--Button Container-->   
+      </form> <!--form end-->
     </div><!--form-container-->
   </div><!--main-container-->
-    
+  <script src="../js/addressbook_input.js"></script>
+  <script src="../js/Contact.js"></script>
 </body>
 </html>
