@@ -50,8 +50,13 @@ class Contact {
     get state(){
         return this._state;
     }
-    set state(){
+    set state(state){
         this._state=state;
+    }
+
+    toString(){
+        return "Name: "+this._name + " Address: "+this._address +" City: "+this._city+" State: "+this._state+
+        " ZIP: "+this._zip+" Phone: "+this._phone;
     }
 
 }
@@ -99,6 +104,20 @@ address.addEventListener('input',function(){
         } 
 });
 
+const save = () => {
+    createContact();
+}
+
+const createContact = () => {
+    const person = new Contact();
+    person.name = document.querySelector('#name').value;
+    person.address = document.querySelector('#address').value;
+    person.city = document.querySelector('#city').value;
+    person.state = document.querySelector('#state').value;
+    person.zip = document.querySelector('#zip').value;
+    person.phone = document.querySelector('#phone').value;
+    alert(person.toString());
+}
 
 
 
