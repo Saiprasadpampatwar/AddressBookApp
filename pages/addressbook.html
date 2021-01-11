@@ -31,25 +31,31 @@
         <div class="row-content">
              <label class="label txt" for="name">Full Name</label>
              <input class="input" type="text" id="name" name="name" required>
-            <error-output class="text-error" for="text"></error-output>
+             <error-output class="text-error" for="text"></error-output>
         </div><!--Full name container-->
         <div class="row-content">
           <label class="label txt" for="phone">Phone Number</label>
           <input class="input" type="number" id="phone"
            name="phone" placeholder="" required>
+           <error-output class="phone-error" for="text"></error-output>
         </div><!--Phone container-->
         <div class="row-content">
           <label class="label txt" for="address">Address</label>
           <textarea id="address" class="input" name="address" placeholder="" style="height:100px"></textarea>
+          <error-output class="address-error" for="address"></error-output>
         </div><!--Addrress container-->
         <div class="city-state-zip-content">
           <div class="row-content city">
             <label class="label txt" for="city">City</label>
-            <select id="City" name="City"  style="width: 80%"></select>
+            <select id="City" name="City"  style="width: 80%">
+              <option value="Nanded">Nanded</option>
+            </select>
           </div><!--City-->
           <div class="row-content state">
             <label class="label txt" for="state">State</label>
-            <select id="State" name="State" style="width: 80%"></select>
+            <select id="State" name="State" style="width: 80%">
+              <option value="Maharashtra">Maharashtra</option>
+            </select>
           </div><!--State-->
           <div class="row-content zip">
             <label class="label txt" for="state">Zip</label>
@@ -66,7 +72,7 @@
       </form> <!--form end-->
     </div><!--form-container-->
   </div><!--main-container-->
-  <script src="../js/addressbook_input.js"></script>
-  <script src="../js/Contact.js"></script>
+  <script src="../js/contact.js"></script>
+  <script src="../js/addressbook.js"></script>
 </body>
 </html>
