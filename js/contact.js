@@ -61,7 +61,10 @@ class Contact {
 
 }
 
+let isUpdate = false;
+let contactObj = {};
 
+window.addEventListener('DOMContentLoaded', (event) => {
 const names = document.querySelector('#name');
 names.addEventListener('input', function () {
     if (names.value.length == 0) {
@@ -103,6 +106,29 @@ address.addEventListener('input',function(){
             document.querySelector('.address-error').textContent=e;
         } 
 });
+checkForUpdate();
+
+});
+
+
+
+const checkForUpdate = () => {
+    const addressBookJSON = localStorage.getItem('editEmp');
+    isUpdate = addressBookJSON ? true : false;
+    if(!isUpdate)
+    return;
+    contactObj = JSON.parse(addressBookJSON);
+    setForm();
+  }
+  
+  const setForm = () => {
+    document.querySelector('#name').value=contactObj._name;
+    document.querySelector('#address').value=contactObj._address;
+    document.querySelector('#city').value=contactObj._city;
+    document.querySelector('#state').value=contactObj._state;
+    document.querySelector('#zip').value=contactObj._zip;
+    document.querySelector('#phone').value=contactObj._phone;
+  }
 
 const save = () => {
     let contact = createContact();
@@ -150,6 +176,11 @@ const onreset = () => {
     document.querySelector('#zip').value="";
     document.querySelector('#phone').value="";
 }
+
+
+
+
+
 
 
 

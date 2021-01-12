@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded',(event)=>{
    contactList = getAddressDataFromStorages();
    document.querySelector('.emp-count').textContent = contactList.length;
     createInnerHtml();
+    localStorage.removeItem('editEmp')
   
 });
 
@@ -28,7 +29,7 @@ const createInnerHtml= () => {
             <td>${contact._phone}</td>
             <td>
             <img id="${contact.id}" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
-            <img id="1"  onclick="update(this)" alt="edit" src="../assets/icons/create-black-18dp.svg">
+            <img id="${contact.id}"  onclick="update(this)" alt="edit" src="../assets/icons/create-black-18dp.svg">
             </td>
         </tr>
         `;
@@ -44,4 +45,11 @@ const remove=(node) =>{
     contactList.splice(index,1);
     localStorage.setItem("ContactList",JSON.stringify(contactList));
     createInnerHtml();
-  }
+}
+
+const update = (node) => {
+    let contactData = contactList.find(contact => contact.id==node.id);
+    if(!contactData) return;
+    localStorage.setItem('editEmp',JSON.stringify(contactData));
+    window.location.replace("../pages/addressbook.html");
+}
