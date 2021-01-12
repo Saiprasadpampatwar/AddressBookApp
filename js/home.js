@@ -51,5 +51,8 @@ const update = (node) => {
     let contactData = contactList.find(contact => contact.id==node.id);
     if(!contactData) return;
     localStorage.setItem('editEmp',JSON.stringify(contactData));
+    const index = contactList.indexOf(contactData);
+    contactList.splice(index,1);
+    localStorage.setItem("ContactList",JSON.stringify(contactList));
     window.location.replace("../pages/addressbook.html");
 }

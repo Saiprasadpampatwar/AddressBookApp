@@ -139,6 +139,7 @@ const save = () => {
 const createContact = () => {
 
     let person = new Contact();
+    person.id = contactObj.id;
     if(!person.id) person.id = createNewID();
     person.name = document.querySelector('#name').value;
     person.address = document.querySelector('#address').value;
