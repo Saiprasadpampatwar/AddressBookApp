@@ -65,4 +65,14 @@ html body{
     outline: none;
     cursor: pointer;
     text-decoration: none;
- }
+}
+
+.emp-count{
+    background-color: #82a70c;
+    color: #ffffff;
+    border-radius: 48%;
+    font-size: 12px;
+    width: 26px;
+    text-align: center;
+    display: inline-block;
+}
