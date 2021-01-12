@@ -27,7 +27,7 @@ const createInnerHtml= () => {
             <td>${contact._zip}</td>
             <td>${contact._phone}</td>
             <td>
-            <img id="1" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
+            <img id="${contact.id}" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
             <img id="1"  onclick="update(this)" alt="edit" src="../assets/icons/create-black-18dp.svg">
             </td>
         </tr>
@@ -36,3 +36,12 @@ const createInnerHtml= () => {
     document.querySelector('#table-display').innerHTML = innerHtml;
 
 }
+
+const remove=(node) =>{
+    let contactData = contactList.find(contact=>contact.id==node.id);
+    if (!contactData) return;
+    const index = contactList.indexOf(contactData);
+    contactList.splice(index,1);
+    localStorage.setItem("ContactList",JSON.stringify(contactList));
+    createInnerHtml();
+  }
