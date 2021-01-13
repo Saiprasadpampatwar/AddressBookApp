@@ -136,11 +136,31 @@ const save = () => {
     
 }
 
+const saveOnServer = () => {
+    let contact = createContact();
+    const postURL = "http://localhost:3000/Person";
+    const personData = {
+        "name" : contact._name,
+        "address": contact._address,
+        "city": contact._city,
+        "state": contact._state,
+        "zip": contact._zip,
+        "phone": contact._phone
+    };
+    makePromiseCall("POST",postURL,false,personData)
+                                      .then(resonseText => {
+                                          alert(resonseText)
+                                      })
+                                      .catch(error => {
+                                        alert(error) 
+                                    });
+}
+
 const createContact = () => {
 
     let person = new Contact();
-    person.id = contactObj.id;
-    if(!person.id) person.id = createNewID();
+    //person.id = contactObj.id;
+    //if(!person.id) person.id = createNewID();
     person.name = document.querySelector('#name').value;
     person.address = document.querySelector('#address').value;
     person.city = document.querySelector('#city').value;
