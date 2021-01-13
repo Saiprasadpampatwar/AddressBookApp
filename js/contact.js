@@ -64,6 +64,7 @@ class Contact {
 let isUpdate = false;
 let contactObj = {};
 
+
 window.addEventListener('DOMContentLoaded', (event) => {
 const names = document.querySelector('#name');
 names.addEventListener('input', function () {
@@ -112,12 +113,14 @@ checkForUpdate();
 
 
 
-const checkForUpdate = () => {
+const checkForUpdate = (contactData) => {
     const addressBookJSON = localStorage.getItem('editEmp');
     isUpdate = addressBookJSON ? true : false;
-    if(!isUpdate)
-    return;
     contactObj = JSON.parse(addressBookJSON);
+    if(!isUpdate){
+        contactObj = contactData;
+    }
+    
     setForm();
   }
   
@@ -143,12 +146,12 @@ const saveOnServer = () => {
     let contact = createContact();
     const postURL = "http://localhost:3000/Person";
     const personData = {
-        "name" : contact._name,
-        "address": contact._address,
-        "city": contact._city,
-        "state": contact._state,
-        "zip": contact._zip,
-        "phone": contact._phone
+        "_name" : contact._name,
+        "_address": contact._address,
+        "_city": contact._city,
+        "_state": contact._state,
+        "_zip": contact._zip,
+        "_phone": contact._phone
     };
     makePromiseCall("POST",postURL,false,personData)
                                       .then(resonseText => {

@@ -1,6 +1,6 @@
-
+let contactList = [0];
 const site_properties = {
-    server : "false",
+    server : "true",
     homepage : "../pages/home.html"
 }
 
@@ -26,41 +26,13 @@ const getPersonFromServer = () => {
                                       .then(resonseText => {
                                           contactList = JSON.parse(resonseText)
                                           document.querySelector('.emp-count').textContent = contactList.length;
-                                            createInnerHtmlforServer();
+                                            createInnerHtml();
                                             localStorage.removeItem('editEmp')
                                       })
                                       .catch(error => {
                                         console.log(error) ;
                                     });
 }
-
-const createInnerHtmlforServer= () => {
-    
-    const headerHtml = "<th>Full Name </th> <th>Address</th> <th>City</th> <th>State</th>"+
-                            "<th>Zip</th> <th>Phone Number</th> <th>Actions</th>";
-    if (contactList.length == 0) return;
-    let innerHtml = `${headerHtml}`;
-
-    for(const contact of contactList){
-        innerHtml = `${innerHtml}
-        <tr>
-            <td>${contact.name}</td>
-            <td>${contact.address}</td>
-            <td>${contact.city}</div>
-            <td>${contact.state}</td>
-            <td>${contact.zip}</td>
-            <td>${contact.phone}</td>
-            <td>
-            <img id="${contact.id}" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
-            <img id="${contact.id}"  onclick="update(this)" alt="edit" src="../assets/icons/create-black-18dp.svg">
-            </td>
-        </tr>
-        `;
-    }
-    document.querySelector('#table-display').innerHTML = innerHtml;
-
-}
-
 
 const createInnerHtml = () => {
     
@@ -92,18 +64,34 @@ const createInnerHtml = () => {
 const remove=(node) =>{
     let contactData = contactList.find(contact=>contact.id==node.id);
     if (!contactData) return;
+    if(site_properties.server.match("true")){
+    const deleteURL = "http://localhost:3000/Person/"+contactData.id.toString();
+    makePromiseCall("DELETE",deleteURL,false)
+                                      .then(resonseText => {
+                                            createInnerHtml();   
+                                      })
+                                      .catch(error => {
+                                        console.log(error) ;
+                                    });
+    }else{
     const index = contactList.indexOf(contactData);
     contactList.splice(index,1);
     localStorage.setItem("ContactList",JSON.stringify(contactList));
     createInnerHtml();
+    }
 }
 
 const update = (node) => {
+
     let contactData = contactList.find(contact => contact.id==node.id);
     if(!contactData) return;
+    if(site_properties.server.match("true")){
+        checkForUpdate(contactData);
+    }else{
     localStorage.setItem('editEmp',JSON.stringify(contactData));
     const index = contactList.indexOf(contactData);
     contactList.splice(index,1);
     localStorage.setItem("ContactList",JSON.stringify(contactList));
+    }
     window.location.replace("../pages/addressbook.html");
 }
