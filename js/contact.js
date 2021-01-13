@@ -131,9 +131,12 @@ const checkForUpdate = () => {
   }
 
 const save = () => {
+    if(site_properties.server.match("true")){
+        saveOnServer();
+    }else{
     let contact = createContact();
     storeToLocalStorage(contact);
-    
+    }
 }
 
 const saveOnServer = () => {
@@ -153,14 +156,19 @@ const saveOnServer = () => {
                                       })
                                       .catch(error => {
                                         alert(error) 
-                                    });
+    });
+
+    window.location.replace(site_properties.homepage);
 }
 
 const createContact = () => {
 
     let person = new Contact();
-    //person.id = contactObj.id;
-    //if(!person.id) person.id = createNewID();
+    if(!site_properties.server.match("true")){
+
+        person.id = contactObj.id;
+        if(!person.id) person.id = createNewID();
+    }
     person.name = document.querySelector('#name').value;
     person.address = document.querySelector('#address').value;
     person.city = document.querySelector('#city').value;

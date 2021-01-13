@@ -1,7 +1,12 @@
-let contactList ;
-let server = false;
+
+const site_properties = {
+    server : "false",
+    homepage : "../pages/home.html"
+}
+
+
 window.addEventListener('DOMContentLoaded',(event)=>{
-    if(server){
+    if(site_properties.server.match("true")){
         getPersonFromServer();
     }else{
         getAddressDataFromStorages();
