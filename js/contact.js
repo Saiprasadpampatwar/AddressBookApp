@@ -72,7 +72,7 @@ names.addEventListener('input', function () {
     return;
     }
     try {
-    (new Contact()).name = names.value;
+        checkName(names.value);
     document.querySelector('.text-error').textContent="";
     } catch (e) {
         document.querySelector('.text-error').textContent=e;
@@ -86,7 +86,7 @@ phone.addEventListener('input',function(){
         return;
     }
     try {
-        (new Contact()).phone = phone.value;
+            checkPhone(phone.value);
         document.querySelector('.phone-error').textContent="";
         } catch (e) {
             document.querySelector('.phone-error').textContent=e;
@@ -100,7 +100,7 @@ address.addEventListener('input',function(){
         return;
     }
     try {
-        (new Contact()).address = address.value;
+            checkAddress(address.value);
         document.querySelector('.address-error').textContent="";
         } catch (e) {
             document.querySelector('.address-error').textContent=e;
@@ -178,6 +178,20 @@ const onreset = () => {
     document.querySelector('#phone').value="";
 }
 
+const checkName = (name) => {
+    let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z ]{2,}$');
+    if (!nameRegex.test(name)) throw "Name is incorrect!";
+}
+
+const checkPhone = (phone) => {
+    let nameRegex = RegExp('^[0-9]{10,13}$');
+    if (!nameRegex.test(phone)) throw "Phone  is Invalid"    
+}
+
+const checkAddress = (address) => {
+    let nameRegex = RegExp('^[A-Z a-z]{4,}$');
+    if (!nameRegex.test(address)) throw "Address is Invalid"   
+}
 
 
 
